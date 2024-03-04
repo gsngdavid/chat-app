@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PlusIcon from "../assets/icons/PlusIcon";
 import Button from "../components/ui/Button";
+import ChatOverview from "../components/ChatOverview";
 
 export default function Home() {
   return (
@@ -20,6 +21,24 @@ export default function Home() {
         <Button>
           <PlusIcon fill="white" className="w-4 h-4" />
         </Button>
+      </div>
+
+      <div className="bg-dark-gray shadow-lg rounded-2xl my-6">
+        <input
+          className="w-full bg-transparent text-white text-sm py-3 px-5 outline-none"
+          type="text"
+          placeholder="Search"
+        />
+      </div>
+
+      <div className="flex flex-col gap-y-4">
+        <ChatOverview />
+        <ChatOverview />
+        <ChatOverview />
+        <ChatOverview />
+        <ChatOverview />
+        <ChatOverview />
+        <ChatOverview />
       </div>
     </main>
   );
