@@ -33,11 +33,11 @@ export default function Home() {
         </Button>
       </div>
 
-      <div>
+      <div className="py-6">
         <p className="text-xs text-center my-4">4/03/2024</p>
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-1">
-            <OutgoingMessage />
+            <OutgoingMessage message="Hello, how are you?" time="4:18 AM" />
           </div>
           <div className="flex flex-col gap-y-1">
             <IncomingMessage
@@ -46,8 +46,22 @@ export default function Home() {
             />
             <IncomingMessage message="What's up?" time="4:20 AM" />
           </div>
+          <div className="flex flex-col gap-y-1">
+            <OutgoingMessage
+              message="I wonder if you would like to watch a movie tonight?"
+              time="5:18 AM"
+            />
+          </div>
         </div>
         <p className="text-xs text-center my-4">Today</p>
+        <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-1">
+            <IncomingMessage
+              message="Sounds like a good idea!"
+              time="4:20 PM"
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
