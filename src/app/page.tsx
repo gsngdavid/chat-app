@@ -11,7 +11,7 @@ import StatusIcon from "../assets/icons/StatusIcon";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="space-x">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-4">
           <Image
