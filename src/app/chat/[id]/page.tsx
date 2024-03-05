@@ -3,6 +3,7 @@ import Button from "../../../components/ui/Button";
 import CallIcon from "../../../assets/icons/CallIcon";
 import ArrowLeftIcon from "../../../assets/icons/ArrowLeft";
 import OutgoingMessage from "../../../components/Messages/outgoing/OutgoingMessage";
+import IncomingMessage from "../../../components/Messages/incoming/IncomingMessage";
 
 export default function Home() {
   return (
@@ -37,6 +38,13 @@ export default function Home() {
         <div className="flex flex-col gap-y-4">
           <div className="flex flex-col gap-y-1">
             <OutgoingMessage />
+          </div>
+          <div className="flex flex-col gap-y-1">
+            <IncomingMessage
+              message="Hey, Bruce! Its been a while"
+              time="4:19 AM"
+            />
+            <IncomingMessage message="What's up?" time="4:20 AM" />
           </div>
         </div>
         <p className="text-xs text-center my-4">Today</p>
