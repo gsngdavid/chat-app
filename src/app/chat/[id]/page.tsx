@@ -10,7 +10,7 @@ import EmojiIcon from "../../../assets/icons/EmojiIcon";
 import AttachIcon from "../../../assets/icons/AttachIcon";
 import SendIcon from "../../../assets/icons/SendIcon";
 
-export default function Home() {
+export default function DirectMessage() {
   return (
     <main className="space-x">
       <div className="flex justify-between items-center">
