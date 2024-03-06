@@ -1,3 +1,6 @@
+"use client";
+
+import AuthInput from "../../../components/ui/AuthInput";
 import Button from "../../../components/ui/Button";
 
 export default function LoginPage() {
@@ -7,39 +10,37 @@ export default function LoginPage() {
         New <span className="block">Account</span>
       </h1>
       <form className="flex flex-col gap-y-4 mt-10">
-        <div className="flex flex-col">
-          <label className="text-sm" htmlFor="firstName">
-            First Name
-          </label>
-          <input
-            className="bg-transparent outline-none border-b-2 text-sm text-secondary border-dark-gray focus:border-primary"
-            type="text"
-            name="firstName"
-            id="firstName"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm" htmlFor="lastName">
-            Last Name
-          </label>
-          <input
-            className="bg-transparent outline-none border-b-2 text-sm text-secondary border-dark-gray focus:border-primary"
-            type="text"
-            name="lastName"
-            id="lastName"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="bg-transparent outline-none border-b-2 text-sm text-secondary border-dark-gray focus:border-primary"
-            type="text"
-            name="email"
-            id="email"
-          />
-        </div>
+        <AuthInput
+          type="text"
+          id="firstName"
+          name="firstName"
+          placeholder="First name"
+        />
+        <AuthInput
+          type="text"
+          id="lastName"
+          name="lastName"
+          placeholder="Last name"
+        />
+        <AuthInput
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Username"
+        />
+        <AuthInput type="email" id="email" name="email" placeholder="Email" />
+        <AuthInput
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+        <AuthInput
+          type="password"
+          id="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm password"
+        />
         <div className="flex flex-col mt-5">
           <Button>Submit</Button>
         </div>

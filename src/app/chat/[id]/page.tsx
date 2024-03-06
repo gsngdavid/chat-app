@@ -5,7 +5,6 @@ import ArrowLeftIcon from "../../../assets/icons/ArrowLeft";
 import OutgoingMessage from "../../../components/Messages/outgoing/OutgoingMessage";
 import IncomingMessage from "../../../components/Messages/incoming/IncomingMessage";
 import RecordIcon from "../../../assets/icons/RecordIcon";
-import CameraIcon from "../../../assets/icons/CameraIcon";
 import EmojiIcon from "../../../assets/icons/EmojiIcon";
 import AttachIcon from "../../../assets/icons/AttachIcon";
 import SendIcon from "../../../assets/icons/SendIcon";
