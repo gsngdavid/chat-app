@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+"use client"
+
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "Chat-app",
-  description: "Chat with your friends and family",
-};
+const queryClient = new QueryClient();
 
 export default function RootLayout({
   children,
@@ -18,7 +17,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="bg-gray max-w-md mx-auto rounded-3xl my-4 py-4">
-          {children}
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
         </div>
       </body>
     </html>

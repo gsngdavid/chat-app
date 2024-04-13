@@ -1,7 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import morgan from "morgan"
+import morgan from "morgan";
+import cors from "cors";
+import bodyParser from "body-parser";
+
+import authRoutes from "./routes/authRoutes";
 
 dotenv.config();
 
@@ -10,10 +14,21 @@ const dbUrl = process.env.DB_URL;
 
 const app = express();
 
-app.use(morgan("tiny"))
+app.use(morgan("tiny"));
+app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+  })
+);
 
-app.get("/", (req: Request, res: Response, next: NextFunction) => {
-  res.json({ message: "working..." });
+app.use("/auth", authRoutes);
+
+app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.log(error);
+  const { code, message } = error;
+
+  res.status(code ?? 500).json({ message: message ?? "Internal server error" });
 });
 
 mongoose
