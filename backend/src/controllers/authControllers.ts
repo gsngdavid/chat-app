@@ -3,7 +3,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
 import User from "../models/User";
-import { UserExistsError } from "../errors";
+import {
+  UnauthorizedError,
+  UserExistsError,
+  UserNotFoundError,
+} from "../errors";
 
 export const signup = async (
   req: Request,
@@ -36,3 +40,29 @@ export const signup = async (
   }
 };
 
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = await User.findOne({
+      $or: [{ email: req.body.user }, { username: req.body.user }],
+    });
+    if (!user) {
+      throw new UnauthorizedError("Incorrect credentials");
+    }
+
+    const isMatch = bcrypt.compareSync(req.body.password, user.password);
+    if (!isMatch) throw new UnauthorizedError("Incorrect credentials");
+
+    const token = jwt.sign(
+      { userId: user.id },
+      process.env.JWT_SECRET as string
+    );
+
+    res.json({ userId: user.id, token });
+  } catch (error) {
+    next(error);
+  }
+};

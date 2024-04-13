@@ -15,12 +15,18 @@ export class UserNotFoundError extends NotFoundError {
   }
 }
 
-const user = new User();
-
 export class UserExistsError extends CustomError {
   public code: number;
   public constructor(property: keyof UserDocument) {
     super(`User with that ${property} already exists`);
     this.code = 409;
+  }
+}
+
+export class UnauthorizedError extends CustomError {
+  public code: number;
+  public constructor(message: string) {
+    super(message);
+    this.code = 401;
   }
 }
