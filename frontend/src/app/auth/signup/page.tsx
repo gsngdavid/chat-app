@@ -7,6 +7,7 @@ import { SignupInputs } from "../../../types/interfaces";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import fetcher from "../../../utils/fetcher";
 import { apiUrl } from "../../../utils/apiurl";
+import { redirect } from "next/navigation";
 
 interface SignupFormData {
   firstName: string;
@@ -29,6 +30,7 @@ export default function SignupPage() {
     data,
     error,
     isPending: isLoading,
+    isSuccess,
     mutate,
   } = useMutation<{ id: string }, Error, SignupFormData>({
     mutationFn: (formData) =>
@@ -45,10 +47,12 @@ export default function SignupPage() {
 
   if (error) {
     console.log(error);
-    return <h1>Something went wrong!</h1>;
+    return <h1>{error.message}</h1>;
   }
 
   if (isLoading) return <h1>Loading...</h1>;
+
+  if (data) redirect("/auth/login");
 
   return (
     <main className="space-x px-10">

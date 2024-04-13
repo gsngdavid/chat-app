@@ -14,9 +14,8 @@ export default async function fetcher<T>(
   const response = await fetch(url, {
     method,
     body: JSON.stringify(body),
-    headers: { "Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
   });
-  console.log("Method: ", method, "body: ", body);
 
   const data = await response.json();
 
