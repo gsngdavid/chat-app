@@ -1,13 +1,13 @@
 import Image from "next/image";
-import PlusIcon from "../assets/icons/PlusIcon";
-import Button from "../components/ui/Button";
-import ChatOverview from "../components/ChatOverview";
+import PlusIcon from "../../../assets/icons/PlusIcon";
+import Button from "../../../components/ui/Button";
+import ChatOverview from "../../../components/ChatOverview";
 import Link from "next/link";
-import GearIcon from "../assets/icons/GearIcon";
-import NavLink from "../components/ui/NavLink";
-import MessageIcon from "../assets/icons/MessageIcon";
-import CameraIcon from "../assets/icons/CameraIcon";
-import StatusIcon from "../assets/icons/StatusIcon";
+import GearIcon from "../../../assets/icons/GearIcon";
+import NavLink from "../../../components/ui/NavLink";
+import MessageIcon from "../../../assets/icons/MessageIcon";
+import CameraIcon from "../../../assets/icons/CameraIcon";
+import StatusIcon from "../../../assets/icons/StatusIcon";
 
 export default function Home() {
   return (
@@ -60,23 +60,23 @@ export default function Home() {
       <div
         className="my-2 rounded-3xl"
         style={{
-          boxShadow: "rgba(255, 255, 255, 0.06) 0px 2px 4px 0px inset;",
+          boxShadow: "rgba(255, 255, 255, 0.06) 0px 2px 4px 0px inset",
         }}
       >
         <div
           className="flex justify-between gap-4 rounded-3xl py-2 px-4"
-          style={{ boxShadow: " rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;" }}
+          style={{ boxShadow: " rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px" }}
         >
-          <NavLink link="#">
+          <NavLink link="/chat">
             <MessageIcon className="w-6 h-6" stroke="#CBDBEA" fill="none" />
           </NavLink>
           <NavLink link="#">
             <CameraIcon className="w-6 h-6" stroke="#CBDBEA" fill="none" />
           </NavLink>
-          <NavLink link="#">
+          <NavLink link="/status">
             <StatusIcon className="w-6 h-6" stroke="#CBDBEA" fill="none" />
           </NavLink>
-          <NavLink link="#">
+          <NavLink link="/settings">
             <GearIcon className="w-6 h-6" fill="#CBDBEA" />
           </NavLink>
         </div>

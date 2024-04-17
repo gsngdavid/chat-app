@@ -4,7 +4,7 @@ import AuthInput from "../../../components/ui/AuthInput";
 import Button from "../../../components/ui/Button";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { SignupInputs } from "../../../types/interfaces";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import fetcher from "../../../utils/fetcher";
 import { apiUrl } from "../../../utils/apiurl";
 import { redirect } from "next/navigation";
@@ -19,7 +19,6 @@ interface SignupFormData {
 }
 
 export default function SignupPage() {
-  // const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -30,9 +29,8 @@ export default function SignupPage() {
     data,
     error,
     isPending: isLoading,
-    isSuccess,
     mutate,
-  } = useMutation<{ id: string }, Error, SignupFormData>({
+  } = useMutation<{ userId: string; message: string }, Error, SignupFormData>({
     mutationFn: (formData) =>
       fetcher(`${apiUrl}/auth/signup`, {
         options: { method: "POST", body: formData },

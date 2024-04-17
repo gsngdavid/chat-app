@@ -1,4 +1,4 @@
-import mongoose, { Document } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 export interface UserDocument {
   firstName: string;
@@ -6,6 +6,7 @@ export interface UserDocument {
   username: string;
   email: string;
   password: string;
+  friends: [Schema.Types.ObjectId]
 }
 
 const UserSchema = new mongoose.Schema({
@@ -30,6 +31,10 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     require: true,
+  },
+  friends: {
+    type: [Schema.Types.ObjectId],
+    default: [],
   },
 });
 

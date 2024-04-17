@@ -1,5 +1,5 @@
 import { CustomError } from "ts-custom-error";
-import User, { UserDocument } from "./models/User";
+import { UserDocument } from "./models/User";
 
 export class NotFoundError extends CustomError {
   public code: number;
