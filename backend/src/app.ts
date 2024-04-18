@@ -6,6 +6,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 
 import authRoutes from "./routes/authRoutes";
+import chatRoutes from "./routes/chatRoutes";
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use("/auth", authRoutes);
+app.use("/chat", chatRoutes);
 
 app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
   console.log(error);

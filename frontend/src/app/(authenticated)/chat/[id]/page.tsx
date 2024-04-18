@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Button from "../../../components/ui/Button";
-import CallIcon from "../../../assets/icons/CallIcon";
-import ArrowLeftIcon from "../../../assets/icons/ArrowLeft";
-import OutgoingMessage from "../../../components/Messages/outgoing/OutgoingMessage";
-import IncomingMessage from "../../../components/Messages/incoming/IncomingMessage";
-import RecordIcon from "../../../assets/icons/RecordIcon";
-import EmojiIcon from "../../../assets/icons/EmojiIcon";
-import AttachIcon from "../../../assets/icons/AttachIcon";
-import SendIcon from "../../../assets/icons/SendIcon";
+import Button from "../../../../components/ui/Button";
+import CallIcon from "../../../../assets/icons/CallIcon";
+import ArrowLeftIcon from "../../../../assets/icons/ArrowLeft";
+import OutgoingMessage from "../../../../components/Messages/outgoing/OutgoingMessage";
+import IncomingMessage from "../../../../components/Messages/incoming/IncomingMessage";
+import RecordIcon from "../../../../assets/icons/RecordIcon";
+import EmojiIcon from "../../../../assets/icons/EmojiIcon";
+import AttachIcon from "../../../../assets/icons/AttachIcon";
+import SendIcon from "../../../../assets/icons/SendIcon";
 
 export default function DirectMessage() {
   return (
