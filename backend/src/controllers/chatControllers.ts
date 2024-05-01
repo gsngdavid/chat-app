@@ -10,15 +10,14 @@ export const sendMessage = async (
 ) => {
   const { receiverId } = req.params;
   const { loggedInUserId } = req;
-  const { text } =  req.body
+  const { text } = req.body;
   try {
     const receiver = await User.findById(receiverId);
     const sender = await User.findById(loggedInUserId);
 
     if (!receiver || !sender) throw new UserNotFoundError();
-    if (!receiver.friends.includes(receiver.id))
-      receiver.friends.push(receiver.id);
-    if (!sender.friends.includes(sender.id)) sender.friends.push(sender.id);
+    if (!receiver.friends.includes(sender.id)) receiver.friends.push(sender.id);
+    if (!sender.friends.includes(receiver.id)) sender.friends.push(receiver.id);
 
     const newMessage = new Message({ receiver, sender, text });
     await newMessage.save();
