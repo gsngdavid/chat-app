@@ -37,6 +37,22 @@ const UserSchema = new mongoose.Schema(
       type: [Schema.Types.ObjectId],
       default: [],
     },
+    latestMessages: [
+      {
+        user: {
+          type: Schema.Types.ObjectId,
+          required: true,
+        },
+        messageId: {
+          type: Schema.Types.ObjectId,
+          required: true,
+        },
+        messagesCount: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
   },
   { timestamps: {} }
 );
