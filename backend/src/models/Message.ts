@@ -1,6 +1,6 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-export interface MessageDocument {
+export interface IMessage extends Document {
   sender: Schema.Types.ObjectId;
   receiver: Schema.Types.ObjectId;
   isRead: boolean;
@@ -28,4 +28,4 @@ const MessageSchema = new mongoose.Schema(
   { timestamps: {} }
 );
 
-export default mongoose.model<MessageDocument>("Message", MessageSchema);
+export default mongoose.model<IMessage>("Message", MessageSchema);

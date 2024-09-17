@@ -1,5 +1,5 @@
 import { CustomError } from "ts-custom-error";
-import { UserDocument } from "./models/User";
+import { IUser } from "./models/User";
 
 export class NotFoundError extends CustomError {
   public code: number;
@@ -15,9 +15,15 @@ export class UserNotFoundError extends NotFoundError {
   }
 }
 
+export class MessageNotFoundError extends NotFoundError {
+  public constructor() {
+    super("Message not found!");
+  }
+}
+
 export class UserExistsError extends CustomError {
   public code: number;
-  public constructor(property: keyof UserDocument) {
+  public constructor(property: keyof IUser) {
     super(`User with that ${property} already exists`);
     this.code = 409;
   }

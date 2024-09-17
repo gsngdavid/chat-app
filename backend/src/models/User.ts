@@ -1,12 +1,20 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
+import { IMessage } from "./Message";
 
-export interface UserDocument {
+export interface ILatestMessage {
+  user: IUser["id"];
+  message: IMessage["id"];
+  messagesCount: number;
+}
+
+export interface IUser extends Document {
   firstName: string;
   lastName: string;
   username: string;
   email: string;
   password: string;
-  friends: [Schema.Types.ObjectId];
+  friends: IUser["id"][];
+  latestMessages: ILatestMessage[];
 }
 
 const UserSchema = new mongoose.Schema(
@@ -41,20 +49,21 @@ const UserSchema = new mongoose.Schema(
       {
         user: {
           type: Schema.Types.ObjectId,
-          required: true,
+          require: true,
         },
-        messageId: {
+        message: {
           type: Schema.Types.ObjectId,
-          required: true,
+          require: true,
         },
         messagesCount: {
           type: Number,
-          required: true,
+          require: true,
         },
+        _id: false
       },
     ],
   },
   { timestamps: {} }
 );
 
-export default mongoose.model<UserDocument>("User", UserSchema);
+export default mongoose.model<IUser>("User", UserSchema);
