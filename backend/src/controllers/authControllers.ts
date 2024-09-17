@@ -6,7 +6,6 @@ import User from "../models/User";
 import {
   UnauthorizedError,
   UserExistsError,
-  UserNotFoundError,
 } from "../errors";
 
 export const signup = async (

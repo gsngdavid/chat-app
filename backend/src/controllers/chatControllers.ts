@@ -2,6 +2,7 @@ import { NextFunction, Response } from "express";
 import User from "../models/User";
 import { UserNotFoundError } from "../errors";
 import Message from "../models/Message";
+import { updateLatestMessagesHandler } from "../helpers/chatHandlers";
 
 export const sendMessage = async (
   req: any,
@@ -16,11 +17,26 @@ export const sendMessage = async (
     const sender = await User.findById(loggedInUserId);
 
     if (!receiver || !sender) throw new UserNotFoundError();
+
     if (!receiver.friends.includes(sender.id)) receiver.friends.push(sender.id);
     if (!sender.friends.includes(receiver.id)) sender.friends.push(receiver.id);
 
-    const newMessage = new Message({ receiver, sender, text });
-    await newMessage.save();
+    const newMessage = await Message.create({ receiver, sender, text });
+
+    const latestMessage = { user: sender.id, message: newMessage.id };
+
+    sender.latestMessages = await updateLatestMessagesHandler(
+      sender.latestMessages,
+      latestMessage
+    );
+
+    if (sender.id !== receiver.id) {
+      receiver.latestMessages = await updateLatestMessagesHandler(
+        receiver.latestMessages,
+        latestMessage
+      );
+    }
+
     await receiver.save();
     await sender.save();
 
