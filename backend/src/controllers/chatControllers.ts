@@ -45,3 +45,30 @@ export const sendMessage = async (
     next(error);
   }
 };
+
+export const getLatestMessages = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  const { loggedInUserId } = req;
+  try {
+    const sender = await User.findById(loggedInUserId).populate({
+      path: "latestMessages",
+      populate: [
+        {
+          path: "user",
+          model: "User",
+        },
+        {
+          path: "message",
+          model: "Message",
+        },
+      ],
+    });
+
+    res.status(201).json(sender);
+  } catch (error) {
+    next(error);
+  }
+};

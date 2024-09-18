@@ -24,7 +24,7 @@ app.use(
 );
 
 app.use("/auth", authRoutes);
-app.use("/chat", chatRoutes);
+app.use("/chats", chatRoutes);
 
 app.use((error: any, _req: Request, res: Response, _next: NextFunction) => {
   console.log(error);
