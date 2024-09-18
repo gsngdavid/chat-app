@@ -3,6 +3,7 @@ import User from "../models/User";
 import { UserNotFoundError } from "../errors";
 import Message from "../models/Message";
 import { updateLatestMessagesHandler } from "../helpers/chatHandlers";
+import dayjs from "dayjs";
 
 export const sendMessage = async (
   req: any,
@@ -59,6 +60,7 @@ export const getLatestMessages = async (
         {
           path: "user",
           model: "User",
+          select: "_id username firstName lastName",
         },
         {
           path: "message",
@@ -67,7 +69,19 @@ export const getLatestMessages = async (
       ],
     });
 
-    res.status(201).json(sender);
+    if (!sender) {
+      throw new UserNotFoundError();
+    }
+
+    res
+      .status(201)
+      .json(
+        sender.latestMessages.sort((user1, user2) =>
+          dayjs(user1.message.updatedAt).isAfter(dayjs(user2.message.updatedAt))
+            ? -1
+            : 1
+        )
+      );
   } catch (error) {
     next(error);
   }
