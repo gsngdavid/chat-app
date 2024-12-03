@@ -86,3 +86,30 @@ export const getLatestMessages = async (
     next(error);
   }
 };
+
+export const getChat = async (req: any, res: Response, next: NextFunction) => {
+  const { loggedInUserId } = req;
+  const { contactId } = req.params;
+  try {
+    const loggedInUser = await User.findById(loggedInUserId);
+    const contactUser = await User.findById(contactId);
+
+    if (!loggedInUser || !contactUser) {
+      throw new UserNotFoundError();
+    }
+
+    const chat = Message.find({ $and: [{ sender: loggedInUser._id }, {receiver}] });
+
+    res
+      .status(201)
+      .json(
+        sender.latestMessages.sort((user1, user2) =>
+          dayjs(user1.message.updatedAt).isAfter(dayjs(user2.message.updatedAt))
+            ? -1
+            : 1
+        )
+      );
+  } catch (error) {
+    next(error);
+  }
+};
